@@ -1,0 +1,38 @@
+<div class="container" style="margin-top: 5%;">
+<button class="btn btn-primary"style="margin-bottom: 5%;" (click)="addstudent()">Add Student</button>
+<h3 style="margin-bottom: 5%;">
+Listes des Etudiants
+</h3>
+
+<form class="mb-3 row">
+  <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+  <div class="col-xs-3 col-sm-auto">
+      <input id="table-filtering-search" class="form-control" type="text" name="search" [(ngModel)]="search" (input)="filtered()" />
+  </div>
+</form>
+
+<table class="table table-striped" style="padding: 50%;">
+  <thead>
+      <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Classe</th>
+          <th scope="col">Actions</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let name of filtrer;index as i">
+          <th scope="row">{{ i+1 }}</th>
+          <td>{{ name.name }}</td>
+          <td>{{ name.email }}</td>
+          <td>{{ name.classe }}</td>
+          <td>
+              <button class="btn btn-primary" (click)="Edit(name._id)" style="margin-right: 5%;">Edit</button>
+              <button class="btn btn-danger" (click)="delete(name._id)">Delete</button>
+          </td>
+      </tr>
+  </tbody>
+</table>
+<a href="/classe">Aller vers Listes des Classes</a>
+</div>

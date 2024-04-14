@@ -1,0 +1,11 @@
+<div class="container">
+  <h3 style="margin-top: 5%; margin-bottom: 5%;">Creer une classe</h3>
+<form #form="ngForm" (ngSubmit)="create(form)">
+  <div class="mb-3">
+    <label for="inputName" class="form-label">Name</label>
+    <input type="text" class="form-control" name="name" [(ngModel)]="addNewItem.name">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>
+</div>

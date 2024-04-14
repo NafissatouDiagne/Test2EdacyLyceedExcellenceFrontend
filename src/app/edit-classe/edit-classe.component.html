@@ -1,0 +1,9 @@
+<form class="container">
+  <h3>Modifier une Classe</h3>
+  <div class="mb-3" style="margin-top: 2%; margin-bottom: 4%;">
+    <label for="inputClasse" class="form-label">Classe</label>
+    <input type="text" class="form-control" name="{{updateClasse?.name}}" [(ngModel)]="updateClasse.name">
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="update(updateClasse._id)">Update</button>
+</form>

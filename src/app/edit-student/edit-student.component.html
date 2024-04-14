@@ -1,0 +1,20 @@
+<div class="container">
+  <h3 style="margin-top: 5%; margin-bottom: 5%;">Modifier un etudiant</h3>
+<form>
+  <div class="mb-3">
+    <label for="inputName" class="form-label">Name</label>
+    <input type="text" class="form-control" name="{{updateStudent?.name}}" [(ngModel)]="updateStudent.name">
+  </div>
+  <div class="mb-3">
+    <label for="inputEmail" class="form-label">Email address</label>
+    <input type="email" class="form-control" name="{{updateStudent?.email}}" [(ngModel)]="updateStudent.email">
+  </div>
+  <div class="mb-3">
+    <label for="inputClass" class="form-label">classe</label>
+    <select class="form-select" name="{{updateStudent?.classe}}" [(ngModel)]="updateStudent.classe">
+      <option *ngFor="let classe of allClasses" [value]="classe.name">{{ classe.name }}</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="update(updateStudent._id)">Update</button>
+</form>
+</div>
