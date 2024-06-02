@@ -10,9 +10,9 @@ export const routes: Routes = [
   {path:'',component:StudentComponent},
 
 {path:'createStudent',component:CreateComponent},
-  {path:'updateStudent/:_id',component:EditStudentComponent},
+  {path:'updateStudent/:id',component:EditStudentComponent},
   {path:'createClasse',component:CreateClasseComponent},
-  {path:'updateClasse/:_id',component:EditClasseComponent},
+  {path:'updateClasse/:id',component:EditClasseComponent},
   {path:'classe',component:ClasseComponent},
   {path:'**',redirectTo:''}
 ];

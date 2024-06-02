@@ -27,8 +27,8 @@ Listes des Classes
 
           <td>{{ name.name }}</td>
           <td>
-              <button class="btn btn-primary" style="margin-right: 5%;" (click)="Edit(name._id)">Edit</button>
-              <button class="btn btn-danger" (click)="delete(name._id)">Delete</button>
+              <button class="btn btn-primary" style="margin-right: 5%;" (click)="Edit(name.id)">Edit</button>
+              <button class="btn btn-danger" (click)="Delete(name.id)">Delete</button>
           </td>
       </tr>
   </tbody>

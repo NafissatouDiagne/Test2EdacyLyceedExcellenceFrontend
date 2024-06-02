@@ -3,11 +3,12 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { GraphqlModule } from '../graphql/graphql.module';
 
 @Component({
   selector: 'app-classe',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,GraphqlModule],
   templateUrl: './classe.component.html',
   styleUrl: './classe.component.css'
 })
@@ -45,12 +46,13 @@ addNewItem:any={
   }
 
   create() {
-    this.data.addclasse(this.addNewItem).subscribe({
+    this.data.addClass(this.addNewItem).subscribe({
       next:(response) => {
         console.log('response', response);
         // Mettre à jour la liste des étudiants après l'ajout réussi
         this.data.getClasses().subscribe((classes) => {
           this.allclasses = classes.classes;
+          console.log('this.allclasses', this.allclasses)
           window.location.reload()
         });
       },
@@ -66,7 +68,7 @@ addNewItem:any={
 
     console.log('updateItem', this.updateItem);
 
-    this.data.updateclasse(this.updateclasse._id, this.updateItem).subscribe({
+    this.data.updateClass(this.updateclasse.id, this.updateItem).subscribe({
       next: (response) => {
         console.log('update', response);
         this.data.getClasses().subscribe((classes) => {
@@ -79,9 +81,8 @@ addNewItem:any={
       }
     });
   }
-  delete(id: number) {
-
-    this.data.deleteclasse(id).subscribe({
+  Delete(id: number) {
+    this.data.deleteClass(id).subscribe({
       next: (response) => {
         console.log('Classe supprimer avec succès');
         this.data.getClasses().subscribe((classes) => {
@@ -95,7 +96,7 @@ addNewItem:any={
     });
   }
 
-ClasseClasse(){
+Classe(){
 this.router.navigate([''])
 }
 Edit(id:any){

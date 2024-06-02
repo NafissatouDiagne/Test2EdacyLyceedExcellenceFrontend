@@ -4,11 +4,12 @@ import {  CommonModule } from '@angular/common';
 import {  FormsModule, NgForm } from '@angular/forms';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { GraphqlModule } from '../graphql/graphql.module';
 
 @Component({
   selector: 'app-student',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,GraphqlModule],
   templateUrl: './student.component.html',
   styleUrl: './student.component.css'
 })
@@ -41,9 +42,9 @@ this.allClasse= response.classes;
 getAllStudents(){
 
   this.data.getStudents().subscribe((response)=>{
-    this.user=response.users
+    this.user=response
 
-this.allStudents=response.users;
+this.allStudents=response.students;
 this.filtrer=this.allStudents;
 console.log('this.allStudents', this.allStudents)
   });
@@ -59,12 +60,14 @@ console.log('this.allStudents', this.allStudents)
 
 
   create() {
-    this.data.addStudent(this.addNewItem).subscribe({
+    console.log('this.addNewItem', this.addNewItem)
+    this.data.addSudent(this.addNewItem).subscribe({
       next:(response) => {
         console.log('response', response);
         // Mettre à jour la liste des étudiants après l'ajout réussi
         this.data.getStudents().subscribe((students) => {
-          this.allStudents = students.users;
+          this.allStudents = students.students;
+
           window.location.reload()
         });
       },
@@ -76,12 +79,12 @@ console.log('this.allStudents', this.allStudents)
 
 
 
-  delete(id: number) {
+  Delete(id: string) {
     this.data.deleteStudent(id).subscribe({
       next: (response) => {
         console.log('Étudiant supprimé avec succès');
         this.data.getStudents().subscribe((students) => {
-          this.allStudents = students.users;
+          this.allStudents = students.students;
 
         });
       },

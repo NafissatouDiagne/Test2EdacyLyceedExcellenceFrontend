@@ -3,11 +3,12 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { GraphqlModule } from '../graphql/graphql.module';
 
 @Component({
   selector: 'app-edit-classe',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,GraphqlModule],
   templateUrl: './edit-classe.component.html',
   styleUrl: './edit-classe.component.css'
 })
@@ -24,10 +25,10 @@ allClasses:any[]=[];
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.selectedClasse = params.get('_id');
+      this.selectedClasse = params.get('id');
       console.log('this.selectedClasse', this.selectedClasse);
       this.data.getClasses().subscribe((response) => {
-        const foundclasse = response.classes.find((e: { _id: any }) => e._id === this.selectedClasse);
+        const foundclasse = response.classes.find((e: { id: any }) => e.id === this.selectedClasse);
         if (foundclasse) {
           this.updateClasse = foundclasse;
           this.classe = this.updateClasse;
@@ -42,7 +43,7 @@ allClasses:any[]=[];
   }
 
   update(id: any) {
-    this.data.updateclasse(id, this.updateClasse).subscribe({
+    this.data.updateClass(id, this.updateClasse).subscribe({
       next: (response) => {
         console.log('update', response);
 

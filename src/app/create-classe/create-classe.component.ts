@@ -3,11 +3,12 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { GraphqlModule } from '../graphql/graphql.module';
 
 @Component({
   selector: 'app-create-classe',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,GraphqlModule],
   templateUrl: './create-classe.component.html',
   styleUrl: './create-classe.component.css'
 })
@@ -48,7 +49,7 @@ addNewItem:any={
         name:form.value.name
       }
 
-    this.data.addclasse(this.addNewItem).subscribe({
+    this.data.addClass(this.addNewItem).subscribe({
       next:(response) => {
         console.log('response', response);
         // Mettre à jour la liste des classes après l'ajout réussi
@@ -63,22 +64,6 @@ addNewItem:any={
     }
   }
 
-
-  delete(id: number) {
-
-    this.data.deleteclasse(id).subscribe({
-      next: (response) => {
-        console.log('Étudiant supprimé avec succès');
-        this.data.getClasses().subscribe((classes) => {
-          this.allclasses = classes.classes;
-
-        });
-      },
-      error: (error) => {
-        console.error('Une erreur s\'est produite lors de la suppression de l\'étudiant :', error);
-      }
-    });
-  }
 
 StudentClasse(){
 this.router.navigate([''])

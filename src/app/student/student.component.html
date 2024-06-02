@@ -28,8 +28,8 @@ Listes des Etudiants
           <td>{{ name.email }}</td>
           <td>{{ name.classe }}</td>
           <td>
-              <button class="btn btn-primary" (click)="Edit(name._id)" style="margin-right: 5%;">Edit</button>
-              <button class="btn btn-danger" (click)="delete(name._id)">Delete</button>
+              <button class="btn btn-primary" (click)="Edit(name.id)" style="margin-right: 5%;">Edit</button>
+              <button class="btn btn-danger" (click)="Delete(name.id)">Delete</button>
           </td>
       </tr>
   </tbody>
